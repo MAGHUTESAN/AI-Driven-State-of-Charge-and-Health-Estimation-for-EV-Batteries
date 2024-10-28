@@ -1,8 +1,7 @@
 # AI-Driven-State-of-Charge-and-Health-Estimation-for-EV-Batteries-
 ML model for predicting SoC, SoH, Duration &amp; Speed in batteries with self-training for high-confidence continuous learning.This repository contains code for a deep learning model that predicts battery health and performance metrics, including SoC, SoH, Duration, and Speed. The model incorporates a self-training loop to continuously improve its accuracy by retraining on high-confidence predictions from new data.
 
-![EV](https://github.com/user-attachments/assets/c04ad029-9a23-464b-a92d-d28ab7bd4d4e)
-
+![EV](https://static.vecteezy.com/system/resources/previews/025/733/581/original/electric-car-at-charging-station-abstract-electric-power-charger-ev-clean-energy-alternative-energy-electric-charger-concept-electronic-vehicle-power-dock-illustration-vector.jpg)
 
 ## Table of Contents
 - [Overview](#overview)
