@@ -24,7 +24,7 @@ if input_type == 'Single Entry':
     # User inputs for Battery Pack Voltage, Battery Current, and Internal Resistance
     voltage = st.number_input("Battery Pack Voltage (V)", min_value=0.0, format="%.2f")
     current = st.number_input("Battery Current (A)", min_value=0.0, format="%.2f")
-    resistance = st.number_input("Internal Resistance (Ω)", min_value=0.0, format="%.9f")
+    resistance = st.number_input("Internal Resistance (ohm)", min_value=0.0, format="%.9f")
 
     # Check if all inputs are provided
     if st.button("Predict"):
@@ -62,9 +62,9 @@ elif input_type == 'CSV File':
         data = pd.read_csv(uploaded_file)
         
         # Ensure the CSV file has the required columns
-        if {'voltage', 'current', 'resistance'}.issubset(data.columns):
+        if {'Battery Pack Voltage (V)', 'Battery Current (A)', 'Internal Resistance (ohm)'}.issubset(data.columns):
             scaler = StandardScaler()
-            input_data = data[['voltage', 'current', 'resistance']]
+            input_data = data[['Battery Pack Voltage (V)', 'Battery Current (A)', 'Internal Resistance (ohm)']]
             input_data_scaled = scaler.fit_transform(input_data)  # Scale using original scaler from training
             
             # Predict for each row
@@ -73,9 +73,9 @@ elif input_type == 'CSV File':
             
             for i, pred in enumerate(predictions):
                 soc_pred, soh_pred, duration_pred, speed_pred = pred
-                voltage = data['voltage'][i]
-                current = data['current'][i]
-                resistance = data['resistance'][i]
+                voltage = data['Battery Pack Voltage (V)'][i]
+                current = data['Battery Current (A)'][i]
+                resistance = data['Internal Resistance (ohm)'][i]
                 
                 voc = voltage + (current * resistance)
                 soc = 100 * (voc - MINIMUM_BATTERY_VOLTAGE) / (FULL_BATTERY_VOLTAGE - MINIMUM_BATTERY_VOLTAGE)
@@ -85,9 +85,9 @@ elif input_type == 'CSV File':
                 speed = RANGE_CONSTANT / duration
                 
                 results.append({
-                    "Voltage (V)": voltage,
-                    "Current (A)": current,
-                    "Resistance (Ω)": resistance,
+                    "Battery Pack Voltage (V)": voltage,
+                    "Battery Current (A)": current,
+                    "Internal Resistance (ohm)": resistance,
                     "SoC (%)": soc,
                     "SoH (%)": soh,
                     "Duration (hrs)": duration,
@@ -107,7 +107,7 @@ elif input_type == 'CSV File':
                 mime='text/csv',
             )
         else:
-            st.error("CSV file must contain 'voltage', 'current', and 'resistance' columns.")
+            st.error("CSV file must contain 'Battery Pack Voltage (V)', 'Battery Current (A)', and 'Internal Resistance (ohm)' columns.")
 
 # Instructions to run on a network
 st.write("To access this app on another device, use the command below:")
