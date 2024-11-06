@@ -1,5 +1,5 @@
-streamlit
-tensorflow-cpu==2.17.0
-pandas
-numpy
-scikit-learn
+streamlit==1.24.0
+tensorflow-cpu==2.10.0  # Or another compatible version to avoid GPU requirements on Streamlit
+pandas==1.5.3
+numpy==1.23.5
+scikit-learn==1.2.0
